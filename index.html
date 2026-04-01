@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locum Psychiatry Roles | Healthcare Australia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hca-navy: #2D1463;
+    --hca-blue: #4A2094;
+    --hca-teal: #7B3FC8;
+    --hca-light-teal: #F0EAF9;
+    --hca-offwhite: #F7F5FB;
+    --hca-border: #DDD5EF;
+    --hca-text: #1E1133;
+    --hca-muted: #6B5890;
+    --card-shadow: 0 2px 16px rgba(45,20,99,0.08);
+    --card-hover: 0 8px 32px rgba(74,32,148,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lexend', sans-serif; background: var(--hca-offwhite); color: var(--hca-text); min-height: 100vh; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #1A0845 0%, #2D1463 40%, #4A2094 75%, #7B3FC8 100%);
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -60px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: rgba(123,63,200,0.18); pointer-events: none;
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -100px; left: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); pointer-events: none;
+  }
+  .header-inner { max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; position: relative; z-index: 1; }
+  .logo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+  .logo-mark {
+    width: 44px; height: 44px; background: white; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: var(--hca-navy); font-size: 15px;
+    letter-spacing: -0.5px; flex-shrink: 0;
+  }
+  .logo-text { color: white; font-size: 15px; font-weight: 500; opacity: 0.92; }
+  .header-badge {
+    display: inline-block; background: rgba(123,63,200,0.25); border: 1px solid rgba(123,63,200,0.45);
+    color: #C9A8F0; font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
+  }
+  .header-title {
+    font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 46px);
+    color: white; line-height: 1.15; margin-bottom: 16px; max-width: 720px;
+  }
+  .header-title em { font-style: italic; color: #C9A8F0; }
+  .header-subtitle {
+    color: rgba(255,255,255,0.78); font-size: 16px; font-weight: 300;
+    line-height: 1.65; max-width: 580px; margin-bottom: 36px;
+  }
+  .contact-strip { display: flex; flex-wrap: wrap; gap: 10px; }
+  .contact-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 9px 18px; border-radius: 50px; font-size: 13px;
+    font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .contact-chip:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
+  .chip-phone { border-color: rgba(201,168,240,0.4); }
+  .chip-whatsapp { border-color: rgba(37,211,102,0.5); }
+
+  /* SEARCH */
+  .search-section {
+    background: white; border-bottom: 1px solid var(--hca-border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,43,92,0.08);
+  }
+  .search-inner { max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .search-box { position: relative; }
+  .search-box svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--hca-muted); pointer-events: none; }
+  .search-input {
+    width: 100%; padding: 11px 16px 11px 42px;
+    border: 1.5px solid var(--hca-border); border-radius: 10px;
+    font-family: 'Lexend', sans-serif; font-size: 14px; color: var(--hca-text);
+    background: var(--hca-offwhite); outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-input:focus { border-color: var(--hca-teal); box-shadow: 0 0 0 3px rgba(123,63,200,0.12); background: white; }
+  .search-input::placeholder { color: var(--hca-muted); }
+  .state-filters { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+  .filter-label { font-size: 12px; font-weight: 600; color: var(--hca-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-right: 4px; }
+  .state-btn {
+    padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--hca-border);
+    background: white; color: var(--hca-navy); font-family: 'Lexend', sans-serif;
+    font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+  }
+  .state-btn:hover { border-color: var(--hca-teal); color: var(--hca-teal); }
+  .state-btn.active { background: var(--hca-navy); border-color: var(--hca-navy); color: white; }
+
+  /* RESULTS */
+  .results-bar { max-width: 1200px; margin: 0 auto; padding: 20px 24px 8px; }
+  .results-count { font-size: 13px; color: var(--hca-muted); }
+  .results-count strong { color: var(--hca-navy); font-weight: 600; }
+
+  /* GRID */
+  .jobs-section { max-width: 1200px; margin: 0 auto; padding: 8px 24px 60px; }
+  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+
+  /* CARD */
+  .job-card {
+    background: white; border-radius: 16px; border: 1.5px solid var(--hca-border);
+    padding: 24px; display: flex; flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    box-shadow: var(--card-shadow); animation: fadeUp 0.4s ease both;
+  }
+  .job-card:hover { box-shadow: var(--card-hover); transform: translateY(-3px); border-color: var(--hca-teal); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 10px; }
+  .state-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--hca-light-teal); color: var(--hca-teal);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 20px; border: 1px solid rgba(0,163,173,0.2); white-space: nowrap;
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #22C55E;
+    animation: pulse 2s infinite; flex-shrink: 0; margin-top: 4px;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .card-title { font-size: 17px; font-weight: 600; color: var(--hca-navy); line-height: 1.3; margin-bottom: 6px; }
+  .card-location { display: flex; align-items: center; gap: 5px; color: var(--hca-muted); font-size: 13px; margin-bottom: 14px; }
+  .card-divider { height: 1px; background: var(--hca-border); margin-bottom: 14px; }
+  .card-details { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .detail-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--hca-offwhite); color: var(--hca-text);
+    font-size: 12px; padding: 5px 11px; border-radius: 8px; border: 1px solid var(--hca-border);
+  }
+  .detail-pill svg { color: var(--hca-blue); flex-shrink: 0; }
+  .card-notes { font-size: 13px; color: var(--hca-muted); line-height: 1.6; margin-bottom: 18px; flex: 1; }
+
+  .card-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .action-btn {
+    flex: 1; min-width: 70px; display: inline-flex; align-items: center; justify-content: center;
+    gap: 6px; padding: 9px 12px; border-radius: 10px; font-family: 'Lexend', sans-serif;
+    font-size: 12px; font-weight: 500; cursor: pointer; text-decoration: none;
+    transition: all 0.15s; border: none; white-space: nowrap;
+  }
+  .btn-phone { background: var(--hca-navy); color: white; }
+  .btn-phone:hover { background: var(--hca-blue); }
+  .btn-whatsapp { background: #25D366; color: white; }
+  .btn-whatsapp:hover { background: #1DAD57; }
+  .btn-email { background: var(--hca-offwhite); color: var(--hca-navy); border: 1.5px solid var(--hca-border); }
+  .btn-email:hover { background: var(--hca-light-teal); border-color: var(--hca-teal); }
+
+  .empty-state { text-align: center; padding: 80px 24px; color: var(--hca-muted); grid-column: 1/-1; }
+  .empty-state h3 { font-size: 20px; color: var(--hca-navy); margin: 16px 0 8px; }
+  .loading-state { grid-column: 1/-1; text-align: center; padding: 60px; color: var(--hca-muted); }
+  .spinner { width: 40px; height: 40px; border: 3px solid var(--hca-border); border-top-color: var(--hca-teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-banner {
+    background: #FEF3C7; border: 1px solid #FCD34D; color: #92400E;
+    border-radius: 10px; padding: 14px 18px; margin: 20px auto;
+    max-width: 1200px; font-size: 14px; display: none;
+    margin-left: 24px; margin-right: 24px;
+  }
+
+  footer { background: var(--hca-navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 13px; }
+  footer a { color: var(--hca-teal); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .jobs-grid { grid-template-columns: 1fr; }
+    .header-inner { padding: 32px 16px 40px; }
+    .search-inner, .jobs-section, .results-bar { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-row">
+      <div class="logo-mark">HCA</div>
+      <span class="logo-text">Healthcare Australia</span>
+    </div>
+    <div class="header-badge">🧠 Locum Psychiatry Roles</div>
+    <h1 class="header-title">Flexible locum <em>Psychiatry</em> roles across Australia</h1>
+    <p class="header-subtitle">Take a look below at our live jobs board and reach out directly to Cydney for further info!</p>
+    <div class="contact-strip">
+      <a href="tel:+61480021056" class="contact-chip chip-phone">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg>
+        +61 480 021 056
+      </a>
+      <a href="https://wa.me/61426816176" target="_blank" class="contact-chip chip-whatsapp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+        WhatsApp Cydney
+      </a>
+      <a href="mailto:cydney@locumlife.com.au" class="contact-chip">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        cydney@locumlife.com.au
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="search-section">
+  <div class="search-inner">
+    <div class="search-box">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search by role, location, facility or keyword…" oninput="filterJobs()">
+    </div>
+    <div class="state-filters" id="stateFilters">
+      <span class="filter-label">State:</span>
+      <button class="state-btn active" data-state="ALL" onclick="setStateFilter(&#39;ALL&#39;, this)">All States</button>
+    <button class="state-btn" data-state="NSW">NSW</button><button class="state-btn" data-state="QLD">QLD</button></div>
+  </div>
+</div>
+
+<div id="errorBanner" class="error-banner"></div>
+
+<div class="results-bar">
+  <span class="results-count" id="resultsCount"><strong>4</strong> roles available</span>
+</div>
+
+<main class="jobs-section">
+  <div class="jobs-grid" id="jobsGrid"><article class="job-card" style="animation-delay:0s">
+      <div class="card-top">
+        <span class="state-tag">📍 QLD</span>
+        <div class="status-dot" title="Available"></div>
+      </div>
+      <h2 class="card-title">Consultant Psychiatrist</h2>
+      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Rockhampton, QLD</div>
+      <div class="card-divider"></div>
+      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 29/03/2026 – 09/04/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> Child &amp; Youth Services</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $2400/day</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg> 🔥 Hot Role</span></div>
+      <p class="card-notes">Accommodation, travel and car hire covered.</p>
+      <div class="card-actions">
+        <a href="tel:+61480021056" class="action-btn btn-phone">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
+        </a>
+        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Rockhampton%2C%20QLD%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Consultant%20Psychiatrist&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Rockhampton%2C%20QLD%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
+        </a>
+      </div>
+    </article><article class="job-card" style="animation-delay:0.05s">
+      <div class="card-top">
+        <span class="state-tag">📍 NSW</span>
+        <div class="status-dot" title="Available"></div>
+      </div>
+      <h2 class="card-title">Psychiatry - Inpatient</h2>
+      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Hunter New England, NSW</div>
+      <div class="card-divider"></div>
+      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 12/04/2026 – 16/04/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> Inpatient</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $2600/day</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg> 🔥 Hot Role</span></div>
+      <p class="card-notes">Hospital organises accommodation. Travel covered up to placement cap.</p>
+      <div class="card-actions">
+        <a href="tel:+61480021056" class="action-btn btn-phone">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
+        </a>
+        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Psychiatry%20-%20Inpatient%20in%20Hunter%20New%20England%2C%20NSW%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Psychiatry%20-%20Inpatient&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Psychiatry%20-%20Inpatient%20in%20Hunter%20New%20England%2C%20NSW%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
+        </a>
+      </div>
+    </article><article class="job-card" style="animation-delay:0.1s">
+      <div class="card-top">
+        <span class="state-tag">📍 QLD</span>
+        <div class="status-dot" title="Available"></div>
+      </div>
+      <h2 class="card-title">Consultant Psychiatrist</h2>
+      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Townsville Hospital, QLD</div>
+      <div class="card-divider"></div>
+      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 15/02/2026 – 27/08/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> General Adult</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $2400/day</span></div>
+      <p class="card-notes">Accommodation, travel and car hire covered.</p>
+      <div class="card-actions">
+        <a href="tel:+61480021056" class="action-btn btn-phone">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
+        </a>
+        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Townsville%20Hospital%2C%20QLD%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Consultant%20Psychiatrist&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Townsville%20Hospital%2C%20QLD%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
+        </a>
+      </div>
+    </article><article class="job-card" style="animation-delay:0.15000000000000002s">
+      <div class="card-top">
+        <span class="state-tag">📍 NSW</span>
+        <div class="status-dot" title="Available"></div>
+      </div>
+      <h2 class="card-title">Consultant Psychiatrist</h2>
+      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Tweed, NSW</div>
+      <div class="card-divider"></div>
+      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 15/02/2026 – 27/08/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> GA</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $3050/day</span></div>
+      <p class="card-notes">Accommodation, travel and car hire covered.</p>
+      <div class="card-actions">
+        <a href="tel:+61480021056" class="action-btn btn-phone">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
+        </a>
+        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Tweed%2C%20NSW%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Consultant%20Psychiatrist&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Tweed%2C%20NSW%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
+        </a>
+      </div>
+    </article></div>
+</main>
+
+<footer>
+  <p>© 2025 Healthcare Australia &nbsp;·&nbsp; Locum Psychiatry Recruitment &nbsp;·&nbsp;
+     Contact Cydney: <a href="mailto:cydney@locumlife.com.au">cydney@locumlife.com.au</a>
+     &nbsp;·&nbsp; <a href="tel:+61480021056">+61 480 021 056</a>
+  </p>
+</footer>
+
+<script>
+const CSV_URL = 'https://script.google.com/macros/s/AKfycbx3oej_oHDVmpkJvMvHrLXtpMwAHrqUOmTd072qf__HpUffb5zlgWXnS7iBkxRo735J/exec';
+const PHONE = '+61480021056';
+const WHATSAPP = '61426816176';
+const EMAIL = 'cydney@locumlife.com.au';
+
+let allJobs = [];
+let activeState = 'ALL';
+
+async function loadJobs() {
+  try {
+    const res = await fetch(CSV_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (!data.length) throw new Error('No data');
+    // Log raw keys so we can see exact column names
+    console.log('RAW KEYS:', Object.keys(data[0]));
+    console.log('FIRST ROW:', JSON.stringify(data[0]));
+    allJobs = data.map(row => {
+      const obj = {};
+      Object.keys(row).forEach(k => obj[k.toLowerCase().trim().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'')] = String(row[k]).trim());
+      return obj;
+    });
+    console.log('MAPPED KEYS:', Object.keys(allJobs[0]));
+    buildStateFilters();
+    renderJobs(allJobs);
+  } catch(e) {
+    console.error('Load error:', e);
+    showError('Could not load jobs. Showing sample data below.');
+    allJobs = getSampleData();
+    buildStateFilters();
+    renderJobs(allJobs);
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorBanner');
+  el.style.display = 'block';
+  el.textContent = msg;
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return [];
+  const headers = parseRow(lines[0]).map(h => h.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,''));
+  return lines.slice(1).map(l => {
+    const vals = parseRow(l);
+    const obj = {};
+    headers.forEach((h,i) => obj[h] = (vals[i]||'').trim());
+    return obj;
+  }).filter(obj => Object.values(obj).some(v => v));
+}
+
+function parseRow(line) {
+  const res = []; let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; }
+    else if (c === ',' && !inQ) { res.push(cur); cur=''; }
+    else cur += c;
+  }
+  res.push(cur); return res;
+}
+
+function get(job, ...keys) {
+  for (const k of keys) {
+    const match = Object.keys(job).find(jk => jk === k || jk.includes(k));
+    if (match && job[match]) return job[match];
+  }
+  return '';
+}
+
+function buildStateFilters() {
+  const states = [...new Set(allJobs.map(j => get(j,'state')).filter(Boolean))].sort();
+  const c = document.getElementById('stateFilters');
+  c.querySelectorAll('.state-btn:not([data-state="ALL"])').forEach(b => b.remove());
+  states.forEach(s => {
+    const b = document.createElement('button');
+    b.className = 'state-btn'; b.textContent = s; b.dataset.state = s;
+    b.onclick = () => setStateFilter(s, b);
+    c.appendChild(b);
+  });
+}
+
+function setStateFilter(state, btn) {
+  activeState = state;
+  document.querySelectorAll('.state-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterJobs();
+}
+
+function filterJobs() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  let f = allJobs;
+  if (activeState !== 'ALL') f = f.filter(j => get(j,'state').toLowerCase().includes(activeState.toLowerCase()));
+  if (q) f = f.filter(j => Object.values(j).some(v => v.toLowerCase().includes(q)));
+  renderJobs(f);
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function icon(path, extra='') {
+  return `<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" ${extra}>${path}</svg>`;
+}
+
+function renderJobs(jobs) {
+  const grid = document.getElementById('jobsGrid');
+  document.getElementById('resultsCount').innerHTML = `<strong>${jobs.length}</strong> role${jobs.length!==1?'s':''} available`;
+
+  if (!jobs.length) {
+    grid.innerHTML = `<div class="empty-state">
+      ${icon('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>','width="48" height="48" stroke="#94a3b8" stroke-width="1.5"')}
+      <h3>No roles found</h3><p>Try a different search term or select All States.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = jobs.map((job, i) => {
+    const title    = get(job,'title') || 'Psychiatry Locum Role';
+    const state    = get(job,'state');
+    const city     = get(job,'location');
+    const facility = get(job,'service');
+    const formatDate = s => {
+      if (!s || s === 'undefined' || s === '') return '';
+      // Handle YYYY-MM-DD or ISO timestamp — split on T and take date part
+      const datePart = String(s).split('T')[0].trim();
+      const parts = datePart.split('-');
+      if (parts.length === 3) return parts[2] + '/' + parts[1] + '/' + parts[0];
+      return s;
+    };
+    const dates = [formatDate(get(job,'startdate')), formatDate(get(job,'enddate'))].filter(Boolean).join(' – ');
+    const rate     = get(job,'rate');
+    const type     = get(job,'hot') === 'yes' ? '🔥 Hot Role' : '';
+    const notes    = get(job,'summary');
+    const loc      = [city, state].filter(Boolean).join(', ');
+    const waMsg    = encodeURIComponent(`Hi Cydney, I'm interested in the ${title}${loc?' in '+loc:''} role. Can we discuss?`);
+    const mailSub  = encodeURIComponent(`Enquiry: ${title}`);
+    const mailBody = encodeURIComponent(`Hi Cydney,\n\nI'm interested in the ${title}${loc?' in '+loc:''} role.\n\nCould we discuss further?\n\nThank you`);
+
+    const pills = [
+      dates    && { svg: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>', text: dates },
+      facility && { svg: '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>', text: facility },
+      rate     && { svg: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>', text: rate },
+      type     && { svg: '<circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>', text: type },
+    ].filter(Boolean);
+
+    return `<article class="job-card" style="animation-delay:${i*.05}s">
+      <div class="card-top">
+        ${state ? `<span class="state-tag">📍 ${esc(state)}</span>` : '<span></span>'}
+        <div class="status-dot" title="Available"></div>
+      </div>
+      <h2 class="card-title">${esc(title)}</h2>
+      ${loc ? `<div class="card-location">${icon('<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>')} ${esc(loc)}</div>` : ''}
+      <div class="card-divider"></div>
+      ${pills.length ? `<div class="card-details">${pills.map(p=>`<span class="detail-pill">${icon(p.svg)} ${esc(p.text)}</span>`).join('')}</div>` : ''}
+      ${notes ? `<p class="card-notes">${esc(notes)}</p>` : ''}
+      <div class="card-actions">
+        <a href="tel:${PHONE}" class="action-btn btn-phone">
+          ${icon('<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"/>')} Call
+        </a>
+        <a href="https://wa.me/${WHATSAPP}?text=${waMsg}" target="_blank" class="action-btn btn-whatsapp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:${EMAIL}?subject=${mailSub}&body=${mailBody}" class="action-btn btn-email">
+          ${icon('<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>')} Email
+        </a>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function getSampleData() {
+  return [
+    {role:'Consultant Psychiatrist',state:'NSW',city:'Sydney',facility:'Royal Prince Alfred Hospital',dates:'Jan–Mar 2025',rate:'$2,500/day',type:'Full-time Locum',notes:'Adult inpatient unit. RANZCP Fellowship required.'},
+    {role:'Forensic Psychiatrist',state:'VIC',city:'Melbourne',facility:'Thomas Embling Hospital',dates:'Feb–Apr 2025',rate:'$2,800/day',type:'Full-time Locum',notes:'Experience in forensic psychiatry essential.'},
+    {role:'Child & Adolescent Psychiatrist',state:'QLD',city:'Brisbane',facility:'Lady Cilento Children\'s Hospital',dates:'Mar–Jun 2025',rate:'$2,600/day',type:'Part-time available',notes:'CAMHS inpatient and outpatient experience preferred.'},
+    {role:'General Psychiatrist',state:'WA',city:'Perth',facility:'Fiona Stanley Hospital',dates:'Ongoing',rate:'$2,400/day',type:'Locum',notes:'Acute inpatient unit. Flexible start dates available.'},
+    {role:'Consultation-Liaison Psychiatrist',state:'SA',city:'Adelaide',facility:'Royal Adelaide Hospital',dates:'Apr–Jul 2025',rate:'$2,550/day',type:'Full-time Locum',notes:'Liaison with surgical and medical teams required.'},
+    {role:'Rural Psychiatrist',state:'NT',city:'Darwin',facility:'Royal Darwin Hospital',dates:'Feb–May 2025',rate:'$3,200/day + accommodation',type:'Locum',notes:'Rural incentives available. AHPRA registration essential.'},
+  ];
+}
+
+loadJobs();
+</script>
+
+
+</body></html>
