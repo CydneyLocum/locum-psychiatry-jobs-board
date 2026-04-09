@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Locum Psychiatry Roles | Healthcare Australia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
     --hca-navy: #2D1463;
@@ -95,6 +94,25 @@
   }
   .state-btn:hover { border-color: var(--hca-teal); color: var(--hca-teal); }
   .state-btn.active { background: var(--hca-navy); border-color: var(--hca-navy); color: white; }
+
+  /* DATE FILTER */
+  .date-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .date-filter-group { display: flex; align-items: center; gap: 8px; }
+  .date-filter-group label { font-size: 12px; font-weight: 600; color: var(--hca-muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+  .date-input {
+    padding: 6px 12px; border-radius: 8px; border: 1.5px solid var(--hca-border);
+    font-family: 'Lexend', sans-serif; font-size: 13px; color: var(--hca-text);
+    background: white; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .date-input:focus { border-color: var(--hca-teal); box-shadow: 0 0 0 3px rgba(123,63,200,0.12); }
+  .date-clear-btn {
+    padding: 5px 10px; border-radius: 20px; border: 1.5px solid var(--hca-border);
+    background: white; color: var(--hca-muted); font-family: 'Lexend', sans-serif;
+    font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+    white-space: nowrap; line-height: 1;
+  }
+  .date-clear-btn:hover { border-color: var(--hca-teal); color: var(--hca-teal); }
 
   /* RESULTS */
   .results-bar { max-width: 1200px; margin: 0 auto; padding: 20px 24px 8px; }
@@ -213,107 +231,32 @@
     </div>
     <div class="state-filters" id="stateFilters">
       <span class="filter-label">State:</span>
-      <button class="state-btn active" data-state="ALL" onclick="setStateFilter(&#39;ALL&#39;, this)">All States</button>
-    <button class="state-btn" data-state="NSW">NSW</button><button class="state-btn" data-state="QLD">QLD</button></div>
+      <button class="state-btn active" data-state="ALL" onclick="setStateFilter('ALL', this)">All States</button>
+    </div>
+    <div class="date-filters">
+      <div class="date-filter-group">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:var(--hca-muted);flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <label for="dateFrom">Start date from</label>
+        <input type="date" class="date-input" id="dateFrom" onchange="filterJobs()" title="Show roles starting on or after this date">
+        <button class="date-clear-btn" id="dateClearBtn" onclick="clearDateFilters()" style="display:none">&#10005;</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="errorBanner" class="error-banner"></div>
 
 <div class="results-bar">
-  <span class="results-count" id="resultsCount"><strong>4</strong> roles available</span>
+  <span class="results-count" id="resultsCount"><strong>0</strong> roles available</span>
 </div>
 
 <main class="jobs-section">
-  <div class="jobs-grid" id="jobsGrid"><article class="job-card" style="animation-delay:0s">
-      <div class="card-top">
-        <span class="state-tag">📍 QLD</span>
-        <div class="status-dot" title="Available"></div>
-      </div>
-      <h2 class="card-title">Consultant Psychiatrist</h2>
-      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Rockhampton, QLD</div>
-      <div class="card-divider"></div>
-      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 29/03/2026 – 09/04/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> Child &amp; Youth Services</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $2400/day</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg> 🔥 Hot Role</span></div>
-      <p class="card-notes">Accommodation, travel and car hire covered.</p>
-      <div class="card-actions">
-        <a href="tel:+61480021056" class="action-btn btn-phone">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
-        </a>
-        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Rockhampton%2C%20QLD%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
-          WhatsApp
-        </a>
-        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Consultant%20Psychiatrist&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Rockhampton%2C%20QLD%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
-        </a>
-      </div>
-    </article><article class="job-card" style="animation-delay:0.05s">
-      <div class="card-top">
-        <span class="state-tag">📍 NSW</span>
-        <div class="status-dot" title="Available"></div>
-      </div>
-      <h2 class="card-title">Psychiatry - Inpatient</h2>
-      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Hunter New England, NSW</div>
-      <div class="card-divider"></div>
-      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 12/04/2026 – 16/04/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> Inpatient</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $2600/day</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg> 🔥 Hot Role</span></div>
-      <p class="card-notes">Hospital organises accommodation. Travel covered up to placement cap.</p>
-      <div class="card-actions">
-        <a href="tel:+61480021056" class="action-btn btn-phone">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
-        </a>
-        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Psychiatry%20-%20Inpatient%20in%20Hunter%20New%20England%2C%20NSW%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
-          WhatsApp
-        </a>
-        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Psychiatry%20-%20Inpatient&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Psychiatry%20-%20Inpatient%20in%20Hunter%20New%20England%2C%20NSW%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
-        </a>
-      </div>
-    </article><article class="job-card" style="animation-delay:0.1s">
-      <div class="card-top">
-        <span class="state-tag">📍 QLD</span>
-        <div class="status-dot" title="Available"></div>
-      </div>
-      <h2 class="card-title">Consultant Psychiatrist</h2>
-      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Townsville Hospital, QLD</div>
-      <div class="card-divider"></div>
-      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 15/02/2026 – 27/08/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> General Adult</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $2400/day</span></div>
-      <p class="card-notes">Accommodation, travel and car hire covered.</p>
-      <div class="card-actions">
-        <a href="tel:+61480021056" class="action-btn btn-phone">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
-        </a>
-        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Townsville%20Hospital%2C%20QLD%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
-          WhatsApp
-        </a>
-        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Consultant%20Psychiatrist&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Townsville%20Hospital%2C%20QLD%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
-        </a>
-      </div>
-    </article><article class="job-card" style="animation-delay:0.15000000000000002s">
-      <div class="card-top">
-        <span class="state-tag">📍 NSW</span>
-        <div class="status-dot" title="Available"></div>
-      </div>
-      <h2 class="card-title">Consultant Psychiatrist</h2>
-      <div class="card-location"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Tweed, NSW</div>
-      <div class="card-divider"></div>
-      <div class="card-details"><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 15/02/2026 – 27/08/2026</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg> GA</span><span class="detail-pill"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg> $3050/day</span></div>
-      <p class="card-notes">Accommodation, travel and car hire covered.</p>
-      <div class="card-actions">
-        <a href="tel:+61480021056" class="action-btn btn-phone">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.18-1.36a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92z"></path></svg> Call
-        </a>
-        <a href="https://wa.me/61426816176?text=Hi%20Cydney%2C%20I%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Tweed%2C%20NSW%20role.%20Can%20we%20discuss%3F" target="_blank" class="action-btn btn-whatsapp">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.533 5.845L.057 23.785a.5.5 0 00.624.616l5.822-1.527A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.74-.527-5.29-1.443l-.38-.225-3.935 1.032.988-3.817-.247-.394A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
-          WhatsApp
-        </a>
-        <a href="mailto:cydney@locumlife.com.au?subject=Enquiry%3A%20Consultant%20Psychiatrist&amp;body=Hi%20Cydney%2C%0A%0AI%27m%20interested%20in%20the%20Consultant%20Psychiatrist%20in%20Tweed%2C%20NSW%20role.%0A%0ACould%20we%20discuss%20further%3F%0A%0AThank%20you" class="action-btn btn-email">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email
-        </a>
-      </div>
-    </article></div>
+  <div class="jobs-grid" id="jobsGrid">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading roles…</p>
+    </div>
+  </div>
 </main>
 
 <footer>
@@ -332,29 +275,36 @@ const EMAIL = 'cydney@locumlife.com.au';
 let allJobs = [];
 let activeState = 'ALL';
 
+document.addEventListener('DOMContentLoaded', function() {
+  loadJobs();
+});
+
 async function loadJobs() {
   try {
-    const res = await fetch(CSV_URL);
+    const res = await fetch(CSV_URL, { mode: 'cors' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     if (!data.length) throw new Error('No data');
-    // Log raw keys so we can see exact column names
     console.log('RAW KEYS:', Object.keys(data[0]));
     console.log('FIRST ROW:', JSON.stringify(data[0]));
     allJobs = data.map(row => {
       const obj = {};
-      Object.keys(row).forEach(k => obj[k.toLowerCase().trim().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'')] = String(row[k]).trim());
+      Object.keys(row).forEach(k => {
+        const normKey = k.toLowerCase().trim().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+        obj[normKey] = String(row[k]).trim();
+      });
       return obj;
     });
     console.log('MAPPED KEYS:', Object.keys(allJobs[0]));
+    console.log('SAMPLE startdate:', get(allJobs[0], 'startdate'));
     buildStateFilters();
-    renderJobs(allJobs);
+    filterJobs();
   } catch(e) {
     console.error('Load error:', e);
-    showError('Could not load jobs. Showing sample data below.');
+    showError('Live jobs could not be loaded (' + e.message + '). Showing sample data.');
     allJobs = getSampleData();
     buildStateFilters();
-    renderJobs(allJobs);
+    filterJobs();
   }
 }
 
@@ -362,29 +312,6 @@ function showError(msg) {
   const el = document.getElementById('errorBanner');
   el.style.display = 'block';
   el.textContent = msg;
-}
-
-function parseCSV(text) {
-  const lines = text.trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-  const headers = parseRow(lines[0]).map(h => h.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,''));
-  return lines.slice(1).map(l => {
-    const vals = parseRow(l);
-    const obj = {};
-    headers.forEach((h,i) => obj[h] = (vals[i]||'').trim());
-    return obj;
-  }).filter(obj => Object.values(obj).some(v => v));
-}
-
-function parseRow(line) {
-  const res = []; let cur = '', inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; }
-    else if (c === ',' && !inQ) { res.push(cur); cur=''; }
-    else cur += c;
-  }
-  res.push(cur); return res;
 }
 
 function get(job, ...keys) {
@@ -414,12 +341,71 @@ function setStateFilter(state, btn) {
   filterJobs();
 }
 
+function parseYMD(s) {
+  if (!s || s === 'undefined' || s === '') return null;
+  const p = String(s).split('T')[0].trim().split('-');
+  if (p.length === 3 && p[0].length === 4) return new Date(+p[0], +p[1]-1, +p[2]);
+  return null;
+}
+
+function parseJobDate(job) {
+  const raw = get(job, 'startdate', 'start_date', 'start', 'date_start', 'commencement', 'from');
+  return parseYMD(raw);
+}
+
+function clearDateFilters() {
+  document.getElementById('dateFrom').value = '';
+  document.getElementById('dateClearBtn').style.display = 'none';
+  filterJobs();
+}
+
 function filterJobs() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  let f = allJobs;
-  if (activeState !== 'ALL') f = f.filter(j => get(j,'state').toLowerCase().includes(activeState.toLowerCase()));
-  if (q) f = f.filter(j => Object.values(j).some(v => v.toLowerCase().includes(q)));
-  renderJobs(f);
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const fromVal = document.getElementById('dateFrom').value;
+  const fromDate = fromVal ? parseYMD(fromVal) : null;
+
+  const clearBtn = document.getElementById('dateClearBtn');
+  if (clearBtn) clearBtn.style.display = fromVal ? 'inline-block' : 'none';
+
+  if (allJobs.length) {
+    let f = allJobs;
+    if (activeState !== 'ALL') {
+      f = f.filter(j => get(j,'state').toLowerCase().includes(activeState.toLowerCase()));
+    }
+    if (q) {
+      f = f.filter(j => Object.values(j).some(v => String(v).toLowerCase().includes(q)));
+    }
+    if (fromDate) {
+      f = f.filter(j => {
+        const start = parseJobDate(j);
+        if (!start) return true;
+        return start >= fromDate;
+      });
+    }
+    renderJobs(f);
+    return;
+  }
+
+  const cards = document.querySelectorAll('#jobsGrid .job-card');
+  let visible = 0;
+  cards.forEach(card => {
+    let show = true;
+    if (activeState !== 'ALL') {
+      const tag = card.querySelector('.state-tag');
+      const cardState = tag ? tag.textContent.replace('📍','').trim() : '';
+      if (!cardState.toLowerCase().includes(activeState.toLowerCase())) show = false;
+    }
+    if (q && !card.textContent.toLowerCase().includes(q)) show = false;
+    if (fromDate) {
+      const ds = card.getAttribute('data-startdate');
+      const cardDate = ds ? parseYMD(ds) : null;
+      if (cardDate && cardDate < fromDate) show = false;
+    }
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('resultsCount').innerHTML =
+    '<strong>' + visible + '</strong> role' + (visible !== 1 ? 's' : '') + ' available';
 }
 
 function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -447,13 +433,12 @@ function renderJobs(jobs) {
     const facility = get(job,'service');
     const formatDate = s => {
       if (!s || s === 'undefined' || s === '') return '';
-      // Handle YYYY-MM-DD or ISO timestamp — split on T and take date part
       const datePart = String(s).split('T')[0].trim();
       const parts = datePart.split('-');
       if (parts.length === 3) return parts[2] + '/' + parts[1] + '/' + parts[0];
       return s;
     };
-    const dates = [formatDate(get(job,'startdate')), formatDate(get(job,'enddate'))].filter(Boolean).join(' – ');
+    const dates    = [formatDate(get(job,'startdate')), formatDate(get(job,'enddate'))].filter(Boolean).join(' – ');
     const rate     = get(job,'rate');
     const type     = get(job,'hot') === 'yes' ? '🔥 Hot Role' : '';
     const notes    = get(job,'summary');
@@ -469,7 +454,8 @@ function renderJobs(jobs) {
       type     && { svg: '<circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>', text: type },
     ].filter(Boolean);
 
-    return `<article class="job-card" style="animation-delay:${i*.05}s">
+    const startRaw = get(job,'startdate','start_date','start','date_start','commencement','from') || '';
+    return `<article class="job-card" style="animation-delay:${i*.05}s" data-startdate="${startRaw}">
       <div class="card-top">
         ${state ? `<span class="state-tag">📍 ${esc(state)}</span>` : '<span></span>'}
         <div class="status-dot" title="Available"></div>
@@ -497,17 +483,16 @@ function renderJobs(jobs) {
 
 function getSampleData() {
   return [
-    {role:'Consultant Psychiatrist',state:'NSW',city:'Sydney',facility:'Royal Prince Alfred Hospital',dates:'Jan–Mar 2025',rate:'$2,500/day',type:'Full-time Locum',notes:'Adult inpatient unit. RANZCP Fellowship required.'},
-    {role:'Forensic Psychiatrist',state:'VIC',city:'Melbourne',facility:'Thomas Embling Hospital',dates:'Feb–Apr 2025',rate:'$2,800/day',type:'Full-time Locum',notes:'Experience in forensic psychiatry essential.'},
-    {role:'Child & Adolescent Psychiatrist',state:'QLD',city:'Brisbane',facility:'Lady Cilento Children\'s Hospital',dates:'Mar–Jun 2025',rate:'$2,600/day',type:'Part-time available',notes:'CAMHS inpatient and outpatient experience preferred.'},
-    {role:'General Psychiatrist',state:'WA',city:'Perth',facility:'Fiona Stanley Hospital',dates:'Ongoing',rate:'$2,400/day',type:'Locum',notes:'Acute inpatient unit. Flexible start dates available.'},
-    {role:'Consultation-Liaison Psychiatrist',state:'SA',city:'Adelaide',facility:'Royal Adelaide Hospital',dates:'Apr–Jul 2025',rate:'$2,550/day',type:'Full-time Locum',notes:'Liaison with surgical and medical teams required.'},
-    {role:'Rural Psychiatrist',state:'NT',city:'Darwin',facility:'Royal Darwin Hospital',dates:'Feb–May 2025',rate:'$3,200/day + accommodation',type:'Locum',notes:'Rural incentives available. AHPRA registration essential.'},
+    {title:'Consultant Psychiatrist',state:'NSW',location:'Sydney',service:'Royal Prince Alfred Hospital',startdate:'2026-01-01',enddate:'2026-03-31',rate:'$2,500/day',summary:'Adult inpatient unit. RANZCP Fellowship required.'},
+    {title:'Forensic Psychiatrist',state:'VIC',location:'Melbourne',service:'Thomas Embling Hospital',startdate:'2026-02-01',enddate:'2026-04-30',rate:'$2,800/day',summary:'Experience in forensic psychiatry essential.'},
+    {title:'Child & Adolescent Psychiatrist',state:'QLD',location:'Brisbane',service:"Lady Cilento Children's Hospital",startdate:'2026-03-01',enddate:'2026-06-30',rate:'$2,600/day',summary:'CAMHS inpatient and outpatient experience preferred.'},
+    {title:'General Psychiatrist',state:'WA',location:'Perth',service:'Fiona Stanley Hospital',startdate:'2026-05-01',enddate:'2026-07-31',rate:'$2,400/day',summary:'General adult psychiatry. Rural allowance applicable.'},
+    {title:'Consultant Psychiatrist',state:'QLD',location:'Rockhampton',service:'Rockhampton Hospital',startdate:'2026-03-29',enddate:'2026-04-09',rate:'$2,400/day',hot:'yes',summary:'Accommodation, travel and car hire covered.'},
+    {title:'Psychiatry - Inpatient',state:'NSW',location:'Hunter New England',service:'Inpatient Unit',startdate:'2026-04-12',enddate:'2026-04-16',rate:'$2,600/day',hot:'yes',summary:'Hospital organises accommodation. Travel covered up to placement cap.'},
+    {title:'Consultant Psychiatrist',state:'QLD',location:'Townsville',service:'Townsville Hospital',startdate:'2026-02-15',enddate:'2026-08-27',rate:'$2,400/day',summary:'Accommodation, travel and car hire covered.'},
+    {title:'Consultant Psychiatrist',state:'NSW',location:'Tweed',service:'Tweed Hospital',startdate:'2026-02-15',enddate:'2026-08-27',rate:'$3,050/day',summary:'Accommodation, travel and car hire covered.'}
   ];
 }
-
-loadJobs();
 </script>
-
-
-</body></html>
+</body>
+</html>
