@@ -19,7 +19,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Lexend', sans-serif; background: var(--hca-offwhite); color: var(--hca-text); min-height: 100vh; }
 
-  /* HEADER */
   header {
     background: linear-gradient(135deg, #1A0845 0%, #2D1463 40%, #4A2094 75%, #7B3FC8 100%);
     position: relative; overflow: hidden;
@@ -68,7 +67,6 @@
   .chip-phone { border-color: rgba(201,168,240,0.4); }
   .chip-whatsapp { border-color: rgba(37,211,102,0.5); }
 
-  /* SEARCH */
   .search-section {
     background: white; border-bottom: 1px solid var(--hca-border);
     position: sticky; top: 0; z-index: 100;
@@ -95,7 +93,6 @@
   .state-btn:hover { border-color: var(--hca-teal); color: var(--hca-teal); }
   .state-btn.active { background: var(--hca-navy); border-color: var(--hca-navy); color: white; }
 
-  /* DATE FILTER */
   .date-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .date-filter-group { display: flex; align-items: center; gap: 8px; }
   .date-filter-group label { font-size: 12px; font-weight: 600; color: var(--hca-muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
@@ -114,16 +111,13 @@
   }
   .date-clear-btn:hover { border-color: var(--hca-teal); color: var(--hca-teal); }
 
-  /* RESULTS */
   .results-bar { max-width: 1200px; margin: 0 auto; padding: 20px 24px 8px; }
   .results-count { font-size: 13px; color: var(--hca-muted); }
   .results-count strong { color: var(--hca-navy); font-weight: 600; }
 
-  /* GRID */
   .jobs-section { max-width: 1200px; margin: 0 auto; padding: 8px 24px 60px; }
   .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
 
-  /* CARD */
   .job-card {
     background: white; border-radius: 16px; border: 1.5px solid var(--hca-border);
     padding: 24px; display: flex; flex-direction: column;
@@ -203,7 +197,7 @@
       <div class="logo-mark">HCA</div>
       <span class="logo-text">Healthcare Australia</span>
     </div>
-    <div class="header-badge">🧠 Locum Psychiatry Roles</div>
+    <div class="header-badge">Locum Psychiatry Roles</div>
     <h1 class="header-title">Flexible locum <em>Psychiatry</em> roles across Australia</h1>
     <p class="header-subtitle">Take a look below at our live jobs board and reach out directly to Cydney for further info!</p>
     <div class="contact-strip">
@@ -267,7 +261,7 @@
 </footer>
 
 <script>
-const CSV_URL = 'https://script.google.com/macros/s/AKfycbx3oej_oHDVmpkJvMvHrLXtpMwAHrqUOmTd072qf__HpUffb5zlgWXnS7iBkxRo735J/exec';
+const CSV_URL = 'https://script.google.com/macros/s/AKfycbxkt6QoauW9Y9YyUREklpfp4lih4k94ALHb7yrlL0b7VSY-f1v4sNUcDYLyDC67mAtv/exec';
 const PHONE = '+61480021056';
 const WHATSAPP = '61426816176';
 const EMAIL = 'cydney@locumlife.com.au';
@@ -279,33 +273,38 @@ document.addEventListener('DOMContentLoaded', function() {
   loadJobs();
 });
 
-async function loadJobs() {
-  try {
-    const res = await fetch(CSV_URL, { mode: 'cors' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    if (!data.length) throw new Error('No data');
-    console.log('RAW KEYS:', Object.keys(data[0]));
-    console.log('FIRST ROW:', JSON.stringify(data[0]));
-    allJobs = data.map(row => {
-      const obj = {};
-      Object.keys(row).forEach(k => {
-        const normKey = k.toLowerCase().trim().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
-        obj[normKey] = String(row[k]).trim();
+function loadJobs() {
+  window.handleJobData = function(data) {
+    try {
+      if (!data || !data.length) throw new Error('No data');
+      allJobs = data.map(row => {
+        const obj = {};
+        Object.keys(row).forEach(k => {
+          const normKey = k.toLowerCase().trim().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+          obj[normKey] = String(row[k] === null || row[k] === undefined ? '' : row[k]).trim();
+        });
+        return obj;
       });
-      return obj;
-    });
-    console.log('MAPPED KEYS:', Object.keys(allJobs[0]));
-    console.log('SAMPLE startdate:', get(allJobs[0], 'startdate'));
-    buildStateFilters();
-    filterJobs();
-  } catch(e) {
-    console.error('Load error:', e);
-    showError('Live jobs could not be loaded (' + e.message + '). Showing sample data.');
+      buildStateFilters();
+      filterJobs();
+    } catch(e) {
+      console.error('Data error:', e);
+      showError('Live jobs could not be loaded (' + e.message + '). Showing sample data.');
+      allJobs = getSampleData();
+      buildStateFilters();
+      filterJobs();
+    }
+  };
+
+  const script = document.createElement('script');
+  script.src = CSV_URL + '?callback=handleJobData';
+  script.onerror = function() {
+    showError('Live jobs could not be loaded. Showing sample data.');
     allJobs = getSampleData();
     buildStateFilters();
     filterJobs();
-  }
+  };
+  document.head.appendChild(script);
 }
 
 function showError(msg) {
@@ -367,45 +366,21 @@ function filterJobs() {
   const clearBtn = document.getElementById('dateClearBtn');
   if (clearBtn) clearBtn.style.display = fromVal ? 'inline-block' : 'none';
 
-  if (allJobs.length) {
-    let f = allJobs;
-    if (activeState !== 'ALL') {
-      f = f.filter(j => get(j,'state').toLowerCase().includes(activeState.toLowerCase()));
-    }
-    if (q) {
-      f = f.filter(j => Object.values(j).some(v => String(v).toLowerCase().includes(q)));
-    }
-    if (fromDate) {
-      f = f.filter(j => {
-        const start = parseJobDate(j);
-        if (!start) return true;
-        return start >= fromDate;
-      });
-    }
-    renderJobs(f);
-    return;
+  let f = allJobs;
+  if (activeState !== 'ALL') {
+    f = f.filter(j => get(j,'state').toLowerCase().includes(activeState.toLowerCase()));
   }
-
-  const cards = document.querySelectorAll('#jobsGrid .job-card');
-  let visible = 0;
-  cards.forEach(card => {
-    let show = true;
-    if (activeState !== 'ALL') {
-      const tag = card.querySelector('.state-tag');
-      const cardState = tag ? tag.textContent.replace('📍','').trim() : '';
-      if (!cardState.toLowerCase().includes(activeState.toLowerCase())) show = false;
-    }
-    if (q && !card.textContent.toLowerCase().includes(q)) show = false;
-    if (fromDate) {
-      const ds = card.getAttribute('data-startdate');
-      const cardDate = ds ? parseYMD(ds) : null;
-      if (cardDate && cardDate < fromDate) show = false;
-    }
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  document.getElementById('resultsCount').innerHTML =
-    '<strong>' + visible + '</strong> role' + (visible !== 1 ? 's' : '') + ' available';
+  if (q) {
+    f = f.filter(j => Object.values(j).some(v => String(v).toLowerCase().includes(q)));
+  }
+  if (fromDate) {
+    f = f.filter(j => {
+      const start = parseJobDate(j);
+      if (!start) return true;
+      return start >= fromDate;
+    });
+  }
+  renderJobs(f);
 }
 
 function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -440,7 +415,7 @@ function renderJobs(jobs) {
     };
     const dates    = [formatDate(get(job,'startdate')), formatDate(get(job,'enddate'))].filter(Boolean).join(' – ');
     const rate     = get(job,'rate');
-    const type     = get(job,'hot') === 'yes' ? '🔥 Hot Role' : '';
+    const type     = (get(job,'hot') || '').toLowerCase() === 'yes' ? '🔥 Hot Role' : '';
     const notes    = get(job,'summary');
     const loc      = [city, state].filter(Boolean).join(', ');
     const waMsg    = encodeURIComponent(`Hi Cydney, I'm interested in the ${title}${loc?' in '+loc:''} role. Can we discuss?`);
